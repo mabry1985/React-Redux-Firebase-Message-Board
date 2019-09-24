@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createMessage } from '../../store/actions/messageActions';
 
 class CreateMessage extends Component {
   state = {
@@ -16,7 +18,7 @@ class CreateMessage extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    this.props.createMessage(this.state)
 
   };
 
@@ -43,4 +45,9 @@ class CreateMessage extends Component {
 
 }
 
-export default CreateMessage;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createMessage: (message) => dispatch(createMessage(message))
+  }
+}
+export default connect(null, mapDispatchToProps)(CreateMessage);
