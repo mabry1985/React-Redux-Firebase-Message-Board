@@ -4,12 +4,16 @@
   "private": true,
   "dependencies": {
     "eslint": "^6.4.0",
+    "firebase": "^6.6.2",
+    "moment": "^2.24.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-redux": "^7.1.1",
+    "react-redux": "^5.1.1",
+    "react-redux-firebase": "^2.4.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.2",
     "redux": "^4.0.4",
+    "redux-firestore": "^0.9.0",
     "redux-thunk": "^2.3.0",
     "thunk": "0.0.1"
   },

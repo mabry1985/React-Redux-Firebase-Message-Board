@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createMessage } from '../../store/actions/messageActions';
+import { Redirect } from 'react-router-dom'
 
 class CreateMessage extends Component {
   state = {
     title: '',
     content: '',
-
   };
 
   handleChange = (e) => {
@@ -18,11 +18,13 @@ class CreateMessage extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.createMessage(this.state)
-
+    this.props.createMessage(this.state);
+    this.props.history.push('/');
   };
 
   render() {
+    const { auth } = this.props;
+    if (!auth.uid) return <Redirect to='/signin' />
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit} className="white">
@@ -45,9 +47,15 @@ class CreateMessage extends Component {
 
 }
 
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     createMessage: (message) => dispatch(createMessage(message))
   }
 }
-export default connect(null, mapDispatchToProps)(CreateMessage);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateMessage);

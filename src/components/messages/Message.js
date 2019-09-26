@@ -1,11 +1,12 @@
 import React from 'react';
+import moment from 'moment';
 
 const Message = ({ message }) => (
-  <div className='card z-depth-0 project-summary'>
+  <div className='card z-depth-0 message-summary'>
     <div className='card-content grey-text text-darken-3'>
       <span className='card-title'>{message.title}</span>
-      <p>Posted by Josh Mabry</p>
-      <p className='grey-text'>September 22, 2:30pm</p>
+      <p>Posted by {message.authorFirstName} {message.authorLastName}</p>
+      <p className='grey-text'>{moment(message.createdAt.toDate()).calendar()}</p>
     </div>
   </div>
 );
